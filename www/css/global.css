@@ -1,0 +1,96 @@
+@import url(reset.css);
+@import url(http://fonts.googleapis.com/css?family=Philosopher&subset=latin);
+
+body {font-family:Helvetica, Arial, sans-serif; font-size:1em;text-shadow:0 1px 0 #fff; color:#636363; padding:0 0 40px 0; background:url(/img/bg-scanlines.png) #c2e1f4;}
+
+#global-header-shell {position:relative; padding:0 40px 0 40px; border-bottom:solid 1px #fafafa; line-height:65px; height:65px; z-index:9999; background:url(/img/bg_header.png) repeat-x top #333;}
+#global-header {width:1020px; margin:0 auto 0 auto; position:relative; padding:0; z-index:3;  line-height:65px; height:65px; }
+#global-header #txt-logo {float:left; margin-left:20px; font-family: 'Philosopher', serif; font-weight:bold; letter-spacing:1px; text-shadow:1px 1px 0 #444; font-size:2.1em; text-transform:uppercase; color:#eee}
+#global-header #txt-logo a {color:#eee; text-decoration:none}
+#global-header #txt-logo span {color:#e33e59 !important}
+#global-header #control {float:right; font-size:.8em; text-shadow:none; line-height:25px; height:25px; margin-top:20px; margin-right:20px}
+#global-header #control li {position:relative; float:left; background:url(/img/dash-dark.png) no-repeat left}
+#global-header #control li.no-dash {background:none}
+#global-header #control li span {display:block; padding:0 10px 0 11px; color:#aaa; text-decoration:none}
+#global-header #control li a {display:block; padding:0 10px 0 11px; color:#ccc; text-decoration:none}
+#global-header #control li a:hover {color:#eee}
+#global-header #control li a.settings {display:block; width:15px; text-indent:-9999px; background:url(/img/ico-gear.png) no-repeat center center}
+
+#global-navigation-shell {position:relative; height:65px; line-height:65px; padding:0 40px 0 40px;  background:url(/img/bg_header.png) #fafafa;border:solid 1px #ddd; border-bottom:solid 1px #ccc; z-index:2;  -moz-box-shadow:inset 0 0 20px #ddd; -webkit-box-shadow: inset 0 0 20px #ddd; -khtml-box-shadow: inset 0 0 20px #ddd; box-shadow: inset 0 0 20px #ddd;  }
+#global-navigation { width:1020px; margin:0 auto 0 auto; position:relative; padding:18px 0 18px 0}
+#global-navigation #search {float:left; margin-left:20px}
+#global-navigation #search input.search-field {text-indent:0; float:left;font-size:1em; font-family:'Philosopher', serif; text-shadow:0 1px 0 #fff; overflow:hidden; padding-right:25px; display:block; width:200px; background:url(/img/bg-input-bevel.png) no-repeat bottom right; line-height:25px; height:25px; border:none; -moz-box-shadow:none; -webkit-box-shadow:none; -khtml-box-shadow:none; box-shadow:none; cursor:pointer}
+#global-navigation #search input.search-field:hover {color:#444}
+#global-navigation #search input.search-field:focus {color:#555 !important}
+#global-navigation #search input.search-btn {display:none;float:left; text-indent:-9999px; width:18px; height:18px; cursor:pointer; border:none; background:url(/img/ico-search-gray.png) no-repeat; margin: 5px 0 0 -20px; -moz-box-shadow:none;  -webkit-box-shadow:none; -khtml-box-shadow:none; box-shadow:none; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF); zoom: 1;}
+#global-navigation #menu {float:left; font-size:.8em; font-weight:bold; text-transform:uppercase; height:25px; line-height:25px; margin-left:20px}
+#global-navigation #menu li {position:relative; background:url(/img/dash.png) no-repeat left;  float:left }
+#global-navigation #menu li.no-dash {background:none}
+#global-navigation #menu li a {display:block; padding:0 10px 0 11px; color:#999; text-decoration:none; border:none }
+#global-navigation #menu li a:hover {color:#444}
+#global-navigation #menu li a.current {color:#444 !important}
+#global-navigation #menu ul {background: #e8e8e8; opacity:0.85; -moz-opacity:0.85; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)"; filter: alpha(opacity=85);  margin:0 0 0 0; padding:23px 0 0 0; text-transform:none; font-weight:normal; letter-spacing:0; position:absolute; border:solid 1px #ccc; border-top:none; border-right:none; display:none; -moz-box-shadow:inset 1px 0 0 #f6f6f6;  -webkit-box-shadow:inset 1px 0 0 #f6f6f6; -khtml-box-shadow:inset 1px 0 0 #f6f6f6; box-shadow:inset 1px 0 0 #f6f6f6;}
+#global-navigation #menu ul li {background:none}
+#global-navigation #menu ul li a {padding:5px 0 5px 12px; font-weight:bold; color: #777;  width:150px}
+#global-navigation #menu ul li a:hover {background:#00bdf6; color:#fff; text-shadow:none; -moz-box-shadow:inset 0 0 10px #0095c3; -webkit-box-shadow:inset 0 0 10px #0095c3; -khtml-box-shadow:inset 0 0 10px #0095c3; box-shadow:inset 0 0 10px #0095c3;}
+#global-navigation #menu ul li ul {opacity:1.0; -moz-opacity:1.0; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; filter: alpha(opacity=100);  padding:0; border:none; -moz-box-shadow:0 0 10px #aaa; -webkit-box-shadow:0 0 10px #aaa; -khtml-box-shadow:0 0 10px #aaa; box-shadow:0 0 10px #aaa; background:#fafafa}
+
+.global-shell {margin:0 auto 0 auto; width:1020px;}
+
+.widget-shell  {margin:0 2% 40px 2%; background:url(/img/bg.png) #f4f4f4; width:96%; text-align:left;  border-bottom:solid 1px #ccc;  -moz-border-radius: 3px; -webkit-border-radius: 3px;  -khtml-border-radius: 3px; border-radius: 3px}
+
+.inner-shadow {-moz-box-shadow:inset 0 0 50px #ccc; -webkit-box-shadow:inset 0 0 50px #ccc; -khtml-box-shadow:inset 0 0 50px #ccc; box-shadow:inset 0 0 50px #ccc;}
+
+.widget-header {height:65px; line-height:65px; padding:0 40px 0 40px; background:url(/img/bg_header.png) #fafafa; color:#555; border-bottom:solid 1px #ccc; overflow:hidden;  border-top:solid 1px #fff; -moz-box-shadow:inset 0 -5px 5px #ddd; webkit-box-shadow:inset 0 -5px 5px #ddd; -khtml-box-shadow:inset 0 -5px 5px #ddd; box-shadow: inset 0 -5px 5px #ddd; -moz-border-radius: 3px; -webkit-border-radius: 3px;  -khtml-border-radius: 3px; border-radius: 3px}
+
+.widget-header h2 {display:block; float:left; font-family:'Philosopher', serif; font-size:1.4em; margin:3px 0 0 0; padding-top:0 !important}
+.widget-header h2 a {text-decoration:none; color:#00bdf6}
+
+.widget-body {clear:both; padding:20px 40px 35px 40px;color:#636363; word-spacing:2px; border-top:solid 1px #fff !important}
+.widget-body h1, h2, h3, h4, h5 {font-family:'Philosopher', serif; color:#555; padding-top:.5em}
+.widget-body h1 {font-size:1.6em; margin:0 0 .7em 0}
+.widget-body h2 {font-size:1.4em; margin:0 0 .5em 0}
+.widget-body h3 {font-size:1.2em; margin:0 0 .4em 0}
+.widget-body h4 {font-size:1.1em; margin:0 0 .2em 0}
+.widget-body h5 {font-size:1em; margin:0 0 0 0}
+.widget-body p {margin-bottom:1.2em; line-height:1.6em; font-size:.85em}
+.widget-body  a {text-decoration:underline; color:#0095c3}
+.widget-body  a:hover {text-decoration:none; }
+
+table {width:100%; clear:both; font-size:.8em; bottom:5px; margin:0; border:solid 1px #ddd; -moz-box-shadow:0 -1px 0 #ddd; -webkit-box-shadow:0 -1px 0 #ddd;  -khtml-box-shadow:0 -1px 0 #ddd;  box-shadow:0 -1px 0 #ddd }
+table th, td {padding-top: 0px; padding-bottom:10px; -moz-box-shadow:0 1px 0 #fff; -webkit-box-shadow:0 1px 0 #fff;  -khtml-box-shadow:0 1px 0 #fff;  box-shadow:0 1px 0 #fff }
+table th {border: solid 1px #d0d0d0; text-align:left; border-top:solid 1px #fff; background: url(/img/ui-bg-btn-gradient.png) repeat-x bottom #eee;  font-weight:bold; color: #777}
+table thead {background: url(/img/ui-bg-btn-gradient.png) repeat-x bottom #eee; }
+table td {border-bottom:solid 1px #ddd; }
+table tr.even td {background:#fafafa; border-bottom:solid 1px #ddd }
+
+.paging_info {float:left; font-size:.8em; margin:15px 0 0 0}
+.paging_full_numbers {float:right; font-size:.8em; margin:10px 30px 25px 0; text-shadow:none; font-weight:bold; }
+.paging_full_numbers .paginate_button {cursor:pointer; display:inline-block; border: 1px solid #ddd; border-bottom:solid 1px #ccc; border-top:solid 1px #fff; background: url(/img/ui-bg-btn-gradient.png) repeat-x bottom #eee; color: #777; padding:5px 8px 5px 8px; margin-left:5px; -moz-box-shadow:0 -1px 0 #ddd;  -webkit-box-shadow:0 -1px 0 #ddd;  -khtml-box-shadow:0 -1px 0 #ddd;  box-shadow:0 -1px 0 #ddd; -moz-border-radius:2px; -khtml-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px}
+.paging_full_numbers .paginate_button:hover { color: #444; border-bottom:solid 1px #bbb; }
+.paging_full_numbers .paginate_active {display:inline-block; color:#fff; text-shadow:none; background:#00bdf6; border: 1px solid #00bdf6 !important; border-bottom:solid 1px #0095c3 !important;  padding:5px 8px 5px 8px; margin-left:5px; -moz-box-shadow:none; -webkit-box-shadow:none;  -khtml-box-shadow:none;  box-shadow:none;  -moz-border-radius:2px; -khtml-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px }
+.paging_full_numbers .paginate_button_disabled {cursor:default; color:#aaa}
+.paging_full_numbers .paginate_button_disabled:hover {cursor:default; color:#aaa}
+.paging_alphabet {float:left; margin:0 0 15px 0 !important}
+.paging_full_numbers a {text-decoration:none}
+
+.fclear {clear:both; height:0; line-height:0}
+.arts { text-shadow: none; }
+.arts p { color: #333; font-size: 14px; font-family: helvetica, arial, sans-serif; font-weight: normal; line-height: 22px;}
+.arts p a { background-color:#152a40; font-weight:bold; color: white; padding: 4px; border-radius: 5px; text-decoration: none; }
+.space { display: inline; width:24px; height:24px; }
+.space img { width:24px; height:24px; }
+.space2 { display: inline; width:2px; height:24px; }
+.space2 img { width:2px; height:24px; }
+
+#console {padding-left:5px;padding-top:5px;background:#1a1a1a;overflow:scroll;font-size:14px;height:400px;font-family:'Lucida Console',Monaco,monospace;}
+#console pre, #console form, #console input{color:white;font-family:'Lucida Console',Monaco,monospace;font-size:14px;padding:0;margin:0;}
+#console form {white-space:nowrap;height:18px;}
+#console pre {white-space:pre;}
+#console input {border:none;outline:none;width:860px;background:#1a1a1a;font-size:14px;font-family:'Lucida Console',Monaco,monospace;margin-left:-1px;padding:0;}
+#console input:focus{outline:none;}
+#console span {color:white;font-family:'Lucida Console',Monaco,monospace;font-size:14px;line-height:19px;padding:0;display:block;}
+#console .command{color:#47c03d;height:18px;}
+#console .out{color:white;clear:both;}
+#console .inp{color:#47c03d;height:18px;}
+#console a {color:#097bfd;}
