@@ -7,9 +7,7 @@ This is the Redis Web Client with no dependencies. Including interactive console
 
 Point web directory to /www and you are set. Other options placed at config.php.
 
-WARNING: This project made for standalone domain, but it uses additional prefix in url: /kitty.
-
-I don`t know what i was thinking about at that time, sorry about that. Also no config for nginx.
+**WARNING:** This project made for standalone domain, but it uses additional prefix in url: /kitty. I don`t know what i was thinking about at that time, sorry about that. Also no config for nginx.
 
 ### Configuration ###
 
