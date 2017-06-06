@@ -1,7 +1,7 @@
 RedKitty
 --------------
 
-This is the Redis Web Client with no dependencies. Including interactive console with history to see how things going.
+This is the Redis Web Client with no dependencies. Including interactive console with history to see how things going. Type "help" in console to get help.
 
 ### Installation ###
 
