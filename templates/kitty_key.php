@@ -36,7 +36,7 @@
 	<div class="widget-shell tabbing inner-shadow">
 		<div class="widget-header">
 			<h2>
-				<div style="display:inline;"><a href="/kitty/server/db<?php echo $ro['server']; ?>/">DB#<?php echo $ro['server']; ?></a> Key: <?php echo $inkey; ?><?php echo ($ro['key'])?(' => '.$ro['key'].' (type: '.$ro['type'].', '.(($ro['type']=='string')?'lenght':'count').': '.$ro['lenght'].')'):''; ?></div>
+				<div style="display:inline;"><a href="/kitty/server/db<?php echo $ro['server']; ?>/">DB#<?php echo $ro['server']; ?></a> Key: <?php echo ($ro['key'])?($ro['key'].' (type: '.$ro['type'].', '.(($ro['type']=='string')?'lenght':'count').': '.$ro['lenght'].')'):''; ?></div>
 			</h2>
 		</div>
 		<div class="arts">
