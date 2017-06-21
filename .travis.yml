@@ -3,13 +3,13 @@ language: php
 php:
 - 5.3
 
-sudo: required
+services:
+- sudo redis-server ~/.phpenv/versions/$(phpenv version-name)/etc/redis.conf
 
 before_script: 
 - echo 'bind 127.0.0.1' > ~/.phpenv/versions/$(phpenv version-name)/etc/redis.conf
 - echo 'port 6379' >> ~/.phpenv/versions/$(phpenv version-name)/etc/redis.conf
 - echo 'unixsocket /tmp/redis.sock' >> ~/.phpenv/versions/$(phpenv version-name)/etc/redis.conf
 - echo 'unixsocketperm 777' >> ~/.phpenv/versions/$(phpenv version-name)/etc/redis.conf
-- sudo redis-server ~/.phpenv/versions/$(phpenv version-name)/etc/redis.conf
 
 script: phpunit --verbose --testdox
