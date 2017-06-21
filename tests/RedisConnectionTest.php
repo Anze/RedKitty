@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 final class RedisConnectionTest extends TestCase {
 
 	public function testNoConnectionToPort() {
-		$this->expectException(Exception::class);
+		$this->expectException('Exception');
 
 		$redis = new Redis(
 			array(
@@ -20,7 +20,7 @@ final class RedisConnectionTest extends TestCase {
 	}
 
 	public function testNoConnectionToSocket() {
-		$this->expectException(Exception::class);
+		$this->expectException('Exception');
 
 		$redis = new Redis(
 			array(
