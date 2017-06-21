@@ -1,6 +1,8 @@
 RedKitty
 --------------
 
+[![Build Status](https://travis-ci.org/anze/RedKitty.svg?branch=master)](https://travis-ci.org/anze/RedKitty)
+
 This is the simple Redis Web Client with no dependencies. Including interactive console with history to see how things going. Type "help" in console to get help.
 
 ### Installation ###
@@ -27,6 +29,6 @@ Tested on PHP 5.2+ and 7.0+.
 
 Written for Redis 2.x. May have not fully supported functional for latest Redis releases.
 
-### Licenses ###
+### License ###
 
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
