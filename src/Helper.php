@@ -1,14 +1,16 @@
 <?php
 //
-//  functions.php
+//  Helper.php
 //  redkitty
 //
-//  Created by Anze on 2011-06-06.
-//  Copyright 2011 0804Team. All rights reserved.
+//  Created by Anze on 2017-06-21.
+//  Copyright 2017 0804Team. All rights reserved.
 //  Licensed under MIT
 //
 
-	function plural($number=0, $f1=null, $f2=null, $f5=null) {
+class Helper {
+
+	public static function plural($number=0, $f1=null, $f2=null, $f5=null) {
 		$number = abs($number) % 100;
 		$n1 = $number % 10;
 		if (($number>10) && ($number<20))
@@ -20,7 +22,7 @@
 		return isset($f5) ? $f5 : $f2;
 	}
 
-	function pages($params, $url) {
+	public static function pages($params, $url) {
 		if (!isset($params['total'])) return '';
 		if (!isset($params['current']) || !$params['current'] || $params['current']<1) $params['current'] = 1;
 		$retval = "";
@@ -45,4 +47,4 @@
 		return str_replace('//', '/', $retval);
 	}
 
-?>
+}

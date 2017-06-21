@@ -1,6 +1,6 @@
 <?php
 //
-//  redis.php
+//  Redis.php
 //  redkitty
 //
 //  Created by Anze on 2011-06-06.
@@ -8,24 +8,26 @@
 //  Licensed under MIT
 //
 
-class redis {
+class Redis {
 
 	protected $redis = null;
 	protected $socket = '/tmp/redis.sock';
-	protected $host = 'localhost';
-	protected $port = '6379';
+	protected $host = '127.0.0.1';
+	protected $port = 6379;
 	protected $unix_socket = false;
-	protected $_redis = array();
 	protected $last_db = 0;
 	protected $parse_result = true;
+	private $timeout = 1;
 
 	function __construct($config=array()) {
-		if (($config['host'])&&($config['port'])) {
+		if ((isset($config['host'])) && (isset($config['port']))) {
 			$this->host = $config['host'];
 			$this->port = $config['port'];
 		}
-		if ($config['socket']) $this->socket = $config['socket'];
-		if ($config['unix_socket']!=false) $this->unix_socket = true;
+		if (isset($config['socket']))
+			$this->socket = $config['socket'];
+		if (isset($config['unix_socket']))
+			$this->unix_socket = $config['unix_socket'] ? true : false;
 	}
 
 	function __destruct() {
@@ -34,11 +36,16 @@ class redis {
 
 	private function connect() {
 		if (!$this->redis) {
-			if ($this->unix_socket) {
-				$this->redis = fsockopen('unix://'.$this->socket, null, $errno, $errstr);
+			try {
+				if ($this->unix_socket) {
+					$this->redis = fsockopen('unix://'.$this->socket, null, $errno, $errstr, $this->timeout);
+				}
+				else {
+					$this->redis = fsockopen($this->host, $this->port, $errno, $errstr, $this->timeout);
+				}
 			}
-			else {
-				$this->redis = fsockopen($this->host, $this->port, $errno, $errstr);
+			catch (Exception $e) {
+				throw new Exception('Error '.$e->getMessage());
 			}
 
 			if (!$this->redis) {
@@ -49,7 +56,7 @@ class redis {
 
 	public function __call($command_name, $args) {
 		$response = null;
-		if (is_array($args[0]))
+		if (isset($args[0]) && (is_array($args[0])))
 			$args = $args[0];
 
 		if ($command_name=='select') {

@@ -8,15 +8,16 @@
 //  Licensed under MIT
 //
 
-$url = explode('/', $_GET['param']);
-if ($url[0]!='kitty') {
-	header("Location: /kitty/");
-	die;
+if (isset($_GET['param'])) {
+	$url = explode('/', $_GET['param']);
+}
+else {
+	$url = array();
 }
 
 try {
 	require_once('config.php');
-	require_once('functions.php');
+	require_once('autoload.php');
 
 	if ($config['core']['debug']) {
 		ini_set('display_errors', 'On');
@@ -29,10 +30,8 @@ try {
 
 	date_default_timezone_set($config['core']['timezone']);
 
-	require_once('redis.php');
-
 	if ($config['redis']['enabled']) {
-		$redis = new redis($config['redis']);
+		$redis = new Redis($config['redis']);
 	}
 	else {
 		throw new Exception('Redis not enabled');
@@ -62,7 +61,7 @@ try {
 		$ro['dbs'][] = $item;
 	}
 
-	if ($url[1]=='info') {
+	if ($url[0]=='info') {
 		$template = '_statistics';
 		foreach($info as $t) {
 			if ($t) {
@@ -77,7 +76,7 @@ try {
 			}
 		}
 	}
-	elseif ($url[1]=='console') {
+	elseif ($url[0]=='console') {
 		@session_start();
 		$user_command = urldecode($_GET['command']);
 
@@ -121,12 +120,12 @@ try {
 			}
 		}
 	}
-	elseif ($url[1]=='server') {
+	elseif ($url[0]=='server') {
 		$template = '_server';
 		$page = intval($_GET['page']);
 		$pager['current'] = $page;
 
-		$db = str_replace('db', '', $url[2]);
+		$db = str_replace('db', '', $url[1]);
 		if (!is_numeric($db)) {
 			throw new Exception('Not a db');
 		}
@@ -135,10 +134,10 @@ try {
 		$ro['server'] = $db;
 		$ro['keys_cnt'] = $redis->dbsize();
 
-		if (($url[3]=='key') && (isset($url[4]))) {
+		if (($url[2]=='key') && (isset($url[3]))) {
 			$template = '_key';
-			$keys = $redis->keys(urldecode($url[4]));
-			$inkey = $url[4];
+			$keys = $redis->keys(urldecode($url[3]));
+			$inkey = $url[3];
 			if (count($keys)==1) {
 				$ro['key'] = $keys[0];
 				$ro['type'] = $redis->type($ro['key']);
