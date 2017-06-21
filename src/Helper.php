@@ -23,7 +23,7 @@ class Helper {
 	}
 
 	public static function pages($params, $url) {
-		if (!isset($params['total'])) return '';
+		if (!isset($params['total'])) return null;
 		if (!isset($params['current']) || !$params['current'] || $params['current']<1) $params['current'] = 1;
 		$retval = "";
 		for($i=1; $i<=$params['total']; $i++) {

@@ -84,15 +84,16 @@ try {
 			$command = explode(' ', $user_command);
 			$method = array_shift($command);
 
-			if ($method=='select') {
-				$_SESSION['db_selected'] = intval($command[0]);
-			}
-
 			if ($_SESSION['db_selected']) {
 				$redis->select($_SESSION['db_selected']);
 			}
 
 			$output = $redis->$method($command);
+
+			if ($method=='select') {
+				$_SESSION['db_selected'] = intval($command[0]);
+			}
+
 			header("Content-Type: text/plain");
 			if (is_array($output)) {
 				foreach($output as $line) {
@@ -303,7 +304,10 @@ try {
 	require_once('templates/kitty'.$template.'.php');
 }
 catch(Exception $e) {
-	require_once('templates/error.php');
+	if ($_GET['command'])
+		echo $e->getMessage();
+	else
+		require_once('templates/error.php');
 }
 
 die;

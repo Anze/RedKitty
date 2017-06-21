@@ -9,7 +9,7 @@
 //
 
 	function __autoload($class) {
-		require_once("src/$class.php");
+		include_once("src/$class.php");
 	}
 
 ?>

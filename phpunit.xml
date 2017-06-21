@@ -17,7 +17,7 @@
     </filter>
 
     <testsuites>
-        <testsuite name="Redis Test Suite">
+        <testsuite name="RedKitty Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

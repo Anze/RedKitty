@@ -16,11 +16,10 @@ class Redis {
 	protected $port = 6379;
 	protected $unix_socket = false;
 	protected $last_db = 0;
-	protected $parse_result = true;
 	private $timeout = 1;
 
 	function __construct($config=array()) {
-		if ((isset($config['host'])) && (isset($config['port']))) {
+		if (isset($config['host']) && isset($config['port'])) {
 			$this->host = $config['host'];
 			$this->port = $config['port'];
 		}
@@ -45,7 +44,7 @@ class Redis {
 				}
 			}
 			catch (Exception $e) {
-				throw new Exception('Error '.$e->getMessage());
+				//NOTE: ignore warnings like connection refuse and timeout
 			}
 
 			if (!$this->redis) {
@@ -60,10 +59,10 @@ class Redis {
 			$args = $args[0];
 
 		if ($command_name=='select') {
-			if ($this->last_db!=$args[0])
+			if ($this->last_db!==$args[0])
 				$this->last_db = $args[0];
 			else
-				return true;
+				return;
 		}
 
 		if (!$this->redis)
@@ -74,10 +73,10 @@ class Redis {
 			$command = sprintf("*%d\r\n%s\r\n", count($args), implode(array_map(array('self', 'getArgs'), $args)));
 			$clen = strlen($command);
 
-			for ($written=0; $written<$clen; $written+=$fwrite) {
+			for($written=0; $written<$clen; $written+=$fwrite) {
 				$fwrite = fwrite($this->redis, substr($command, $written));
 				if ($fwrite===false) {
-					$response = 'failed to write entire command to stream';
+					throw new Exception('Error: failed to write entire command to stream');
 				}
 			}
 
@@ -138,7 +137,7 @@ class Redis {
 			}
 			//exception
 			else {
-				$response = 'invalid server response: '.$reply;
+				throw new Exception('Error: invalid server response - '.$reply);
 			}
 		}
 		return $response;
