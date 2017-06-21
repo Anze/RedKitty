@@ -3,7 +3,14 @@ language: php
 php:
 - 7.1
 
-services: 
-- redis-server
+sudo: required 
+
+before_script:
+- echo "bind 127.0.0.1" > /tmp/redis.conf
+- echo "port 6379" >> /tmp/redis.conf
+- echo "unixsocket /tmp/redis.sock" >> /tmp/redis.conf
+- echo "unixsocketperm 777" >> /tmp/redis.conf
+- echo "daemonize yes" >> /tmp/redis.conf
+- sudo redis-server /tmp/redis.conf
 
 script: phpunit --verbose --testdox
