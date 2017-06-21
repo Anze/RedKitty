@@ -25,8 +25,6 @@ Point web directory to /www and you are set. Other options placed at config.php.
 
 ### Dependencies ###
 
-Tested on PHP 5.2+ and 7.0+.
-
 Written for Redis 2.x. May have not fully supported functional for latest Redis releases.
 
 ### License ###
