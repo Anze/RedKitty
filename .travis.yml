@@ -15,4 +15,8 @@ before_script:
 - echo "daemonize yes" >> /tmp/redis.conf
 - sudo redis-server /tmp/redis.conf
 
-script: phpunit --verbose --testdox
+script:
+- phpunit --coverage-clover=coverage.xml --testdox
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
