@@ -1,7 +1,7 @@
 RedKitty
 --------------
 
-[![Build Status](https://travis-ci.org/Anze/RedKitty.svg?branch=master)](https://travis-ci.org/anze/RedKitty)
+[![Build Status](https://travis-ci.org/Anze/RedKitty.svg?branch=master)](https://travis-ci.org/Anze/RedKitty)
 [![codecov](https://codecov.io/gh/Anze/RedKitty/branch/master/graph/badge.svg)](https://codecov.io/gh/Anze/RedKitty)
 
 This is the simple Redis Web Client with no dependencies. Including interactive console with history to see how things going. Type "help" in console to get help.
