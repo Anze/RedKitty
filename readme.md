@@ -4,7 +4,10 @@ RedKitty
 [![Build Status](https://travis-ci.org/Anze/RedKitty.svg?branch=master)](https://travis-ci.org/Anze/RedKitty)
 [![codecov](https://codecov.io/gh/Anze/RedKitty/branch/master/graph/badge.svg)](https://codecov.io/gh/Anze/RedKitty)
 
-This is the simple Redis Web Client with no dependencies. Including interactive console with history to see how things going. Type "help" in console to get help.
+Simple Redis Web View of your Redis DBs.
+Work via Redis Protocol, so no dependencies at all, except PHP.
+Support connection via port and unix socket, also support password required access.
+Include interactive console with history to see how things going. Type `help` in console to get help.
 
 ### Installation ###
 
@@ -21,7 +24,8 @@ Point web directory to /www and you are set. Other options placed at config.php.
 		'unix_socket' => false,
 		'host' => '127.0.0.1',
 		'port' => 6379,
-		'socket' => '/tmp/redis.sock'
+		'socket' => '/tmp/redis.sock',
+		'requirepass' => 'foobared'
 	)
 
 ### Dependencies ###
