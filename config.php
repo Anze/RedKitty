@@ -19,7 +19,8 @@ $config = array(
 		'unix_socket' => false,
 		'host' => '127.0.0.1',
 		'port' => 6379,
-		'socket' => '/tmp/redis.sock'
+		'socket' => '/tmp/redis.sock',
+		'requirepass' => false
 	)
 );
 ?>

@@ -10,7 +10,7 @@
 
 class Helper {
 
-	public static function plural($number=0, $f1=null, $f2=null, $f5=null) {
+	public static function plural($number = 0, $f1 = null, $f2 = null, $f5 = null) {
 		$number = abs($number) % 100;
 		$n1 = $number % 10;
 		if (($number>10) && ($number<20))
@@ -36,7 +36,7 @@ class Helper {
 						$i = $params['current']-2;
 						$retval .= ' ... ';
 					}
-					elseif ($i>$params['current']+2 && $params['current']<($params['total']-3)) {
+					elseif (($i>$params['current']+2) && ($params['current']<$params['total']-3)) {
 						$retval .= ' ... <a href="'.$url.'?page='.$params['total'].'" class="paginate_button">'.$params['total'].'</a>'."\n";
 						break;
 					}
@@ -45,6 +45,30 @@ class Helper {
 			}
 		}
 		return str_replace('//', '/', $retval);
+	}
+
+	public static function format($items, $parent = 0, $depth = 0, $spaces = '') {
+		if (!is_array($items))
+			return $items;
+
+		if ($depth>32)
+			return '';
+
+		$tree = '';
+		foreach($items as $i=>$item) {
+			$line = sprintf('%1d) ', (intval($i)+1));
+			if (is_array($item))
+				$line .= self::format($item, $i, $depth+1, $spaces.str_pad($spaces, strlen($line), ' ', STR_PAD_LEFT));
+			else
+				$line .= (gettype($item)=='string' ? '"'.$item.'"' : '('.gettype($item).') '.$item)."\n";
+			if ($i>0) {
+				$tree .= $spaces.$line;
+			}
+			else {
+				$tree .= $line;
+			}
+		}
+		return $tree;
 	}
 
 }

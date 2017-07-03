@@ -37,15 +37,37 @@ try {
 		throw new Exception('Redis not enabled');
 	}
 
-	$ro = array();
+	if (($url[0]=='console')&&(isset($_GET['command']))) {
+		@session_start();
+		$user_command = urldecode($_GET['command']);
 
-	$template = '';
+		$command = explode(' ', $user_command);
+		$method = array_shift($command);
+
+		if ($method=='select') {
+			if ((empty($_SESSION['db_selected']))||($_SESSION['db_selected']!==$command[0])) {
+				$_SESSION['db_selected'] = $command[0];
+			}
+		}
+		elseif (!empty($_SESSION['db_selected'])) {
+			$redis->select($_SESSION['db_selected']);
+		}
+
+		$output = $redis->$method($command);
+
+		header("Content-Type: text/plain");
+		echo Helper::format($output);
+		die;
+	}
 
 	$info = $redis->info();
 	$info = explode("\n", $info);
+
+	$ro = array();
+	$dbs = array();
+	$template = '';
 	$per_page = 20;
 
-	$dbs = array();
 	foreach($info as $t) {
 		if (($t[0]=='d')&&($t[1]=='b'))
 			$dbs[] = $t;
@@ -72,51 +94,6 @@ try {
 				else {
 					$tup = explode(':', $t);
 					$ro[$tup[0]] = $tup[1];
-				}
-			}
-		}
-	}
-	elseif ($url[0]=='console') {
-		@session_start();
-		$user_command = urldecode($_GET['command']);
-
-		if (!empty($user_command)) {
-			$command = explode(' ', $user_command);
-			$method = array_shift($command);
-
-			if ($_SESSION['db_selected']) {
-				$redis->select($_SESSION['db_selected']);
-			}
-
-			$output = $redis->$method($command);
-
-			if ($method=='select') {
-				$_SESSION['db_selected'] = intval($command[0]);
-			}
-
-			header("Content-Type: text/plain");
-			if (is_array($output)) {
-				foreach($output as $line) {
-					echo htmlspecialchars($line)."\n";
-				}
-			}
-			else {
-				echo htmlspecialchars($output)."\n";
-			}
-			die;
-		}
-		else {
-			$template = '_console';
-			foreach($info as $t) {
-				if ($t) {
-					if (strstr($t, 'allocation_stats')) {
-						$tup = explode(':', $t);
-						$ro[$tup[0]]['values'] = explode(',', $tup[1]);
-					}
-					else {
-						$tup = explode(':', $t);
-						$ro[$tup[0]] = $tup[1];
-					}
 				}
 			}
 		}
@@ -263,6 +240,21 @@ try {
 					$item['lenght'] = $redis->zcount(array($key, 0, 10000000));
 
 				$ro['keys'][] = $item;
+			}
+		}
+	}
+	elseif ($url[0]=='console') {
+		$template = '_console';
+		foreach($info as $t) {
+			if ($t) {
+				if (strstr($t, 'allocation_stats')) {
+					$tup = explode(':', $t);
+					$ro[$tup[0]]['values'] = explode(',', $tup[1]);
+				}
+				else {
+					$tup = explode(':', $t);
+					$ro[$tup[0]] = $tup[1];
+				}
 			}
 		}
 	}

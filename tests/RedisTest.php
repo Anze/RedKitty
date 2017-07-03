@@ -13,7 +13,8 @@ final class RedisConnectionTest extends TestCase {
 		$this->redis = new Redis(
 			array(
 				'host' => '127.0.0.1',
-				'port' => 6379
+				'port' => 6379,
+				'requirepass' => 'foobared'
 			)
 		);
 	}
@@ -50,7 +51,8 @@ final class RedisConnectionTest extends TestCase {
 		$redis = new Redis(
 			array(
 				'host' => '127.0.0.1',
-				'port' => 6379
+				'port' => 6379,
+				'requirepass' => 'foobared'
 			)
 		);
 
@@ -64,7 +66,8 @@ final class RedisConnectionTest extends TestCase {
 		$redis = new Redis(
 			array(
 				'unix_socket' => true,
-				'socket' => '/tmp/redis.sock'
+				'socket' => '/tmp/redis.sock',
+				'requirepass' => 'foobared'
 			)
 		);
 
@@ -74,13 +77,21 @@ final class RedisConnectionTest extends TestCase {
 		);
 	}
 
-	public function testDefaultDbSelect() {
-		$this->assertEmpty(
-			$this->redis->select(0)
+	public function testRequiredPassword() {
+		$this->expectException('Exception');
+
+		$redis = new Redis(
+			array(
+				'host' => '127.0.0.127',
+				'port' => 6879,
+				'requirepass' => false
+			)
 		);
+
+		$redis->select(0);
 	}
 
-	public function testFirstDbSelect() {
+	public function testDbSelect() {
 		$this->assertEquals(
 			$this->redis->select(1),
 			'OK'
